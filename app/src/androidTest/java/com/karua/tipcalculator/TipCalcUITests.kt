@@ -25,7 +25,7 @@ class TipCalcUITests {
             .performTextInput("20")
         val expectedTip = NumberFormat.getCurrencyInstance().format(2)
         composeTestRule.onNodeWithText("Tip Amount: $expectedTip").assertExists(
-            "No node with text was found"
+            "No node with text was found."
         )
     }
 }

@@ -6,6 +6,7 @@ import java.text.NumberFormat
 
 class TipCalculatorTest {
 
+
     @Test
     fun calculateTip_20PercentNoRoundUp() {
         val amount = 10.00
