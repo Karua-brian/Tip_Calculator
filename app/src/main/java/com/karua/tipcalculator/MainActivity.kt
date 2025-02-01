@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -57,8 +58,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-private fun calculateTip(amount : Double,
+@VisibleForTesting
+internal fun calculateTip(amount : Double,
                          tipPercent : Double,
                          roundUp : Boolean) : String{
     var tip = tipPercent / 100 * amount
@@ -80,7 +81,7 @@ fun TipCalculatorLayout(modifier: Modifier = Modifier) {
     val tipPercent = tipInput.toDoubleOrNull() ?: 0.0
     val tip = calculateTip(amount, tipPercent, roundUp)
 
-    Surface() {
+    Surface {
         Column(modifier = Modifier
             .fillMaxSize()
             .statusBarsPadding()
@@ -137,12 +138,13 @@ fun TipCalculatorLayout(modifier: Modifier = Modifier) {
 
 @Composable
 fun EditNumberField(
+    modifier: Modifier = Modifier,
     label: Int,
     @DrawableRes leadingIcon : Int,
     value: String,
     onValueChange: (String) -> Unit = {},
     keyBoardOptions : KeyboardOptions,
-    modifier: Modifier = Modifier
+
 ){
     OutlinedTextField(
         label = { Text(stringResource(label)) },
